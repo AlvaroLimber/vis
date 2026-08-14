@@ -8,10 +8,9 @@ format:
 
 # {.sidebar}
 
-**Decreto Supremo 5675**
-*13 de Agosto, 2026*
+**Decreto Supremo 5675** del *13 de Agosto, 2026*
 
-**Autor:** Alvaro Chirino Gutierrez | Investigador
+**Autor:** Alvaro Chirino Gutierrez (achirino@aru.org.bo)
 
 ---
 
@@ -20,7 +19,7 @@ format:
 
 La herramienta procesa la información del anexo estructural del decreto para facilitar su consulta a través de dos vistas principales:
 
-* **Por ministerio:** Presenta un diagrama jerárquico interactivo. Haz clic en los nodos azules para expandir o contraer la estructura, navegando desde el nivel de Estado hacia cada Ministerio, Categoría y Entidad dependiente. 
+* **Por ministerio:** Presenta un diagrama jerárquico interactivo. Haz clic en los nodos azules para expandir o contraer la estructura, navegando desde el nivel de Estado hacia cada Ministerio, Categoría y Entidad dependiente. *Se recomienda usar la pantalla horizontal en el celular o, para un mejor resultado, una PC.*
 * **Buscar institución:** Un catálogo tabular rápido. Utiliza la caja de búsqueda para localizar entidades específicas (por nombre o sigla) e identificar inmediatamente la cartera de Estado de la cual dependen en esta nueva gestión.
 
 ---
@@ -61,7 +60,7 @@ collapsibleTree(
   collapsed = TRUE,
   zoomable = TRUE,
   width = 2000,
-  height = "100%"
+  height = "1000%"
 )
 ```
 
