@@ -1,0 +1,92 @@
+---
+title: "Nueva Vinculación Institucional — Órgano Ejecutivo de Bolivia 2026"
+format:
+  dashboard:
+    theme: cosmo
+    nav-buttons: []
+---
+
+# {.sidebar}
+
+**Decreto Supremo 5675**
+*13 de Agosto, 2026*
+
+**Autor:** Alvaro Chirino Gutierrez | Investigador
+
+---
+
+**Acerca de esta herramienta**
+
+
+La herramienta procesa la información del anexo estructural del decreto para facilitar su consulta a través de dos vistas principales:
+
+* **Por ministerio:** Presenta un diagrama jerárquico interactivo. Haz clic en los nodos azules para expandir o contraer la estructura, navegando desde el nivel de Estado hacia cada Ministerio, Categoría y Entidad dependiente. 
+* **Buscar institución:** Un catálogo tabular rápido. Utiliza la caja de búsqueda para localizar entidades específicas (por nombre o sigla) e identificar inmediatamente la cartera de Estado de la cual dependen en esta nueva gestión.
+
+---
+
+<div style="font-size: 0.85em; color: #666;">
+*Datos procesados a partir del Anexo de Estructura Institucional.*<br><br>
+**Potenciado por Quarto y Claude.**
+</div>
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+library(readr)
+library(dplyr)
+library(stringr)
+library(collapsibleTree)
+library(DT)
+
+df <- read_csv("anexo_estructura_1.csv", show_col_types = FALSE) |>
+  mutate(categoria = str_squish(categoria)) |>
+  arrange(ministerio_corto, categoria, entidad)
+```
+
+# Por ministerio
+
+```{r}
+#| title: "Clic en un ministerio para expandir su estructura"
+collapsibleTree(
+  df,
+  hierarchy = c("ministerio_corto", "categoria", "entidad"),
+  root = "Estado",
+  fill = "#5d9cec",
+  nodeSize = "leafCount",
+  fontSize = 12,
+  tooltip = TRUE,
+  collapsed = TRUE,
+  zoomable = TRUE,
+  width = "100%",
+  height = 800
+)
+```
+
+# Buscar institución
+
+```{r}
+#| title: "Escribe el nombre o sigla y ve de que ministerio depende"
+df |>
+  transmute(
+    Institución = entidad,
+    Categoría   = categoria,
+    Ministerio  = ministerio_corto
+  ) |>
+  datatable(
+    rownames = FALSE,
+    filter = "none",
+    options = list(
+      pageLength = 10,
+      dom = "ftip",
+      language = list(
+        search = "Buscar institución:",
+        info = "_START_ a _END_ de _TOTAL_",
+        paginate = list(previous = "Anterior", `next` = "Siguiente")
+      )
+    ),
+    class = "compact stripe hover"
+  )
+```
