@@ -80,9 +80,14 @@ df |>
   datatable(
     rownames = FALSE,
     filter = "none",
+    extensions = "Buttons",
     options = list(
       pageLength = 10,
-      dom = "ftip",
+      dom = "Bftip",
+      buttons = list(
+        list(extend = "csv",   text = "Descargar CSV",   filename = "vinculacion_institucional"),
+        list(extend = "excel", text = "Descargar Excel", filename = "vinculacion_institucional")
+      ),
       language = list(
         search = "Buscar institución:",
         info = "_START_ a _END_ de _TOTAL_",
