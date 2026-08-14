@@ -4,6 +4,9 @@ format:
   dashboard:
     theme: cosmo
     nav-buttons: []
+    include-in-header:
+      text: |
+        <meta name="viewport" content="width=1280">
 ---
 
 # {.sidebar}
